@@ -14,6 +14,8 @@ import { db, auth } from '@/lib/firebase';
 
 function NewsletterSignup() {
     const [email, setEmail] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
 
@@ -23,6 +25,18 @@ function NewsletterSignup() {
         if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
             setStatus('error');
             setMessage('Please enter a valid email address.');
+            return;
+        }
+
+        if (!fullName || fullName.trim().length < 2) {
+            setStatus('error');
+            setMessage('Please enter your full name.');
+            return;
+        }
+
+        if (!phoneNumber || phoneNumber.trim().length < 10) {
+            setStatus('error');
+            setMessage('Please enter a valid phone number.');
             return;
         }
 
@@ -38,12 +52,16 @@ function NewsletterSignup() {
                 setStatus('success');
                 setMessage("You're already on the waitlist! Check your email for our welcome message.");
                 setEmail('');
+                setFullName('');
+                setPhoneNumber('');
                 return;
             }
 
             // Add email to Firestore waitlist collection
             await addDoc(collection(db, 'waitlist'), {
+                fullName: fullName.trim(),
                 email: email.toLowerCase(),
+                phoneNumber: phoneNumber.trim(),
                 subscribedAt: new Date().toISOString(),
                 source: typeof window !== 'undefined' ? window.location.pathname : 'unknown',
                 status: 'pending',
@@ -66,18 +84,25 @@ function NewsletterSignup() {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ email: email.toLowerCase() }),
+                    body: JSON.stringify({
+                        email: email.toLowerCase(),
+                        fullName: fullName.trim(),
+                    }),
                 });
 
                 if (response.ok) {
                     setStatus('success');
                     setMessage("🎉 Success! Check your email for a special welcome message. You're now a VIP on our waitlist!");
                     setEmail('');
+                    setFullName('');
+                    setPhoneNumber('');
                 } else {
                     // Still show success even if email fails
                     setStatus('success');
                     setMessage("🎉 You're on the waitlist! We'll notify you when ChapChap launches.");
                     setEmail('');
+                    setFullName('');
+                    setPhoneNumber('');
                 }
             } catch (emailError) {
                 console.error('Email sending error:', emailError);
@@ -85,6 +110,8 @@ function NewsletterSignup() {
                 setStatus('success');
                 setMessage("🎉 You're on the waitlist! We'll notify you when ChapChap launches.");
                 setEmail('');
+                setFullName('');
+                setPhoneNumber('');
             }
         } catch (error: unknown) {
             console.error('Waitlist Error:', error);
@@ -111,10 +138,44 @@ function NewsletterSignup() {
 
     return (
         <Box component="form" onSubmit={handleSubscribe} noValidate autoComplete="off" sx={{ width: '100%', maxWidth: 500, mx: 'auto' }}>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+            <Stack direction="column" spacing={2}>
                 <TextField
                     fullWidth
-                    label="Your Email Address"
+                    label="Full Name"
+                    variant="outlined"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    disabled={status === 'loading' || status === 'success'}
+                    sx={{
+                        bgcolor: 'rgba(255,255,255,0.9)',
+                        borderRadius: 1,
+                        '& .MuiOutlinedInput-root': {
+                            color: '#000',
+                        }
+                    }}
+                    size="medium"
+                />
+
+                <TextField
+                    fullWidth
+                    label="Phone Number"
+                    variant="outlined"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    disabled={status === 'loading' || status === 'success'}
+                    sx={{
+                        bgcolor: 'rgba(255,255,255,0.9)',
+                        borderRadius: 1,
+                        '& .MuiOutlinedInput-root': {
+                            color: '#000',
+                        }
+                    }}
+                    size="medium"
+                />
+
+                <TextField
+                    fullWidth
+                    label="Email Address"
                     variant="outlined"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -128,15 +189,16 @@ function NewsletterSignup() {
                     }}
                     size="medium"
                 />
+
                 <Button
                     type="submit"
                     variant="contained"
                     size="large"
                     disabled={status === 'loading'}
                     endIcon={status === 'loading' ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
-                    sx={{ px: 4, py: 1.5, whiteSpace: 'nowrap', fontWeight: 'bold' }}
+                    sx={{ py: 1.5, fontWeight: 'bold' }}
                 >
-                    {status === 'loading' ? 'Sending...' : 'Notify Me'}
+                    {status === 'loading' ? 'Joining...' : 'Join Waitlist'}
                 </Button>
             </Stack>
             {message && (
