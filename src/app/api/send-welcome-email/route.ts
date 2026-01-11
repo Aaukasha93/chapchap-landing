@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { WAITLIST_WELCOME_EMAIL } from '@/lib/email-templates';
+import { getWaitlistEmail } from '@/lib/email-templates';
 
 // Initialize Resend
 const resendApiKey = process.env.RESEND_API_KEY;
@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     try {
         console.log('Received email sending request');
         const body = await request.json();
-        const { email } = body;
+        const { email, fullName } = body;
 
         console.log('Processing email for:', email);
 
@@ -36,11 +36,13 @@ export async function POST(request: NextRequest) {
 
         // Send email using Resend
         console.log('Attempting to send email via Resend...');
+        const firstName = fullName ? fullName.split(' ')[0] : 'VIP Member';
+
         const data = await resend.emails.send({
             from: 'ChapChap <hello@chapchap.com.ng>',
             to: [email],
             subject: "🎉 Welcome to ChapChap Waitlist - You're a VIP Now!",
-            html: WAITLIST_WELCOME_EMAIL,
+            html: getWaitlistEmail(firstName),
         });
 
         console.log('Resend API response:', data);

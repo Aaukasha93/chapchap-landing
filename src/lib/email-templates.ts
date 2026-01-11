@@ -1,4 +1,4 @@
-export const WAITLIST_WELCOME_EMAIL = `<!DOCTYPE html>
+export const getWaitlistEmail = (name: string = 'VIP Member') => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -149,7 +149,7 @@ export const WAITLIST_WELCOME_EMAIL = `<!DOCTYPE html>
             
             <!-- Content -->
             <div class="content">
-                <h1 class="greeting">🎉 You're on the List!</h1>
+                <h1 class="greeting">🎉 Hi ${name}, You're on the List!</h1>
                 
                 <p class="message">
                     Thank you for joining the <strong>ChapChap Waitlist</strong>. You've secured your spot to be among the first to experience lightning-fast delivery in Kano.
