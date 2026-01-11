@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
         // Send email using Resend
         console.log('Attempting to send email via Resend...');
         const data = await resend.emails.send({
-            from: 'ChapChap <onboarding@resend.dev>', // Should be updated to your verified domain e.g., hello@chapchap.com.ng
+            from: 'ChapChap <hello@chapchap.com.ng>',
             to: [email],
             subject: "🎉 Welcome to ChapChap Waitlist - You're a VIP Now!",
             html: WAITLIST_WELCOME_EMAIL,

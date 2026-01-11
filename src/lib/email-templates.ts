@@ -12,321 +12,190 @@ export const WAITLIST_WELCOME_EMAIL = `<!DOCTYPE html>
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #030014 0%, #1a1a40 100%);
-            padding: 40px 20px;
-            min-height: 100vh;
+            font-family: 'Inter', Helvetica, Arial, sans-serif;
+            background-color: #030014;
+            margin: 0;
+            padding: 0;
         }
         
+        .email-wrapper {
+            background-color: #030014;
+            padding: 20px;
+        }
+
         .email-container {
             max-width: 600px;
             margin: 0 auto;
-            background: rgba(17, 16, 41, 0.6);
-            backdrop-filter: blur(16px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #111029; /* Solid fallback for glass */
+            border-radius: 16px;
+            border: 1px solid #2a2a40;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
+        /* Header without complex gradients/absolute positioning */
         .header {
-            background: linear-gradient(135deg, rgba(112, 66, 248, 0.2) 0%, rgba(0, 255, 163, 0.1) 100%);
-            padding: 40px 30px;
+            background-color: #7042f8; /* Fallback */
+            background-image: linear-gradient(135deg, #1a0b40 0%, #030014 100%);
+            padding: 30px 20px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(112, 66, 248, 0.3) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+            border-bottom: 3px solid #00ffa3;
         }
         
         .logo {
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 30%, #7042f8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 10px;
+            color: #ffffff;
+            margin-bottom: 5px;
+            letter-spacing: -1px;
         }
         
         .tagline {
             color: #00ffa3;
             font-size: 14px;
             font-weight: 600;
-            letter-spacing: 2px;
             text-transform: uppercase;
-            position: relative;
-            z-index: 1;
+            letter-spacing: 1px;
         }
         
         .content {
-            padding: 40px 30px;
-            color: #ffffff;
+            padding: 30px 20px;
+            color: #e0e0e0;
         }
         
         .greeting {
-            font-size: 28px;
+            color: #ffffff;
+            font-size: 24px;
             font-weight: 800;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #b4b4b4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
         .message {
             font-size: 16px;
-            line-height: 1.8;
-            color: #B4B4B4;
+            line-height: 1.6;
+            color: #c0c0c0;
             margin-bottom: 20px;
         }
         
         .highlight-box {
-            background: rgba(0, 255, 163, 0.1);
+            background-color: #0a2e20; /* Dark green background */
             border-left: 4px solid #00ffa3;
             padding: 20px;
-            border-radius: 12px;
-            margin: 30px 0;
+            border-radius: 8px;
+            margin: 25px 0;
         }
         
         .highlight-box h3 {
             color: #00ffa3;
             font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 10px;
+            margin: 0 0 10px 0;
         }
         
         .highlight-box p {
-            color: #ffffff;
-            font-size: 15px;
-            line-height: 1.6;
+            color: #e0e0e0;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.5;
         }
         
-        .benefits {
-            margin: 30px 0;
-        }
-        
+        /* Simplify benefits for email compatibility */
         .benefit-item {
-            display: flex;
-            align-items: flex-start;
             margin-bottom: 15px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: #1a1a2e;
+            border-radius: 8px;
+            border: 1px solid #2a2a40;
         }
         
-        .benefit-icon {
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(135deg, #7042f8, #00ffa3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-            font-size: 14px;
-        }
-        
-        .benefit-text {
+        .benefit-title {
             color: #ffffff;
-            font-size: 15px;
-            line-height: 1.5;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
         }
         
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #7042f8, #00ffa3);
-            color: #ffffff;
+            background-color: #7042f8;
+            color: #ffffff !important;
             text-decoration: none;
-            padding: 16px 40px;
+            padding: 15px 35px;
             border-radius: 50px;
-            font-weight: 700;
+            font-weight: bold;
             font-size: 16px;
             margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(112, 66, 248, 0.4);
-            transition: transform 0.3s ease;
         }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(112, 66, 248, 0.6);
-        }
-        
+
         .footer {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 30px;
+            background-color: #000000;
+            padding: 30px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .footer-text {
-            color: #B4B4B4;
-            font-size: 13px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .social-links {
-            margin: 20px 0;
-        }
-        
-        .social-link {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            margin: 0 8px;
-            text-decoration: none;
-            color: #00ffa3;
-            line-height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            margin: 30px 0;
-        }
-        
-        @media only screen and (max-width: 600px) {
-            .email-container {
-                border-radius: 16px;
-            }
-            
-            .header {
-                padding: 30px 20px;
-            }
-            
-            .logo {
-                font-size: 32px;
-            }
-            
-            .content {
-                padding: 30px 20px;
-            }
-            
-            .greeting {
-                font-size: 24px;
-            }
-            
-            .cta-button {
-                display: block;
-                text-align: center;
-            }
+            color: #666666;
+            font-size: 12px;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
-    <div class="email-container">
-        <!-- Header -->
-        <div class="header">
-            <div class="logo">ChapChap</div>
-            <div class="tagline">Next-Gen Quick E-Commerce</div>
-        </div>
-        
-        <!-- Content -->
-        <div class="content">
-            <h1 class="greeting">🎉 Welcome to the Future!</h1>
+    <div class="email-wrapper">
+        <div class="email-container">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">ChapChap</div>
+                <div class="tagline">Next-Gen Quick E-Commerce</div>
+            </div>
             
-            <p class="message">
-                Thank you for joining the <strong>ChapChap Waitlist</strong>! We're thrilled to have you as one of our early supporters.
-            </p>
+            <!-- Content -->
+            <div class="content">
+                <h1 class="greeting">🎉 You're on the List!</h1>
+                
+                <p class="message">
+                    Thank you for joining the <strong>ChapChap Waitlist</strong>. You've secured your spot to be among the first to experience lightning-fast delivery in Kano.
+                </p>
+                
+                <!-- Highlight Box -->
+                <div class="highlight-box">
+                    <h3>🌟 VIP Status Confirmed</h3>
+                    <p>
+                        As an early supporter, you'll get exclusive access, special launch discounts, and priority service when we go live.
+                    </p>
+                </div>
+                
+                <!-- Benefits -->
+                <div class="benefit-item">
+                    <span class="benefit-title">⚡ Early Access</span>
+                    Be the first to order when we launch.
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-title">🎁 Exclusive Perks</span>
+                    Special discounts reserved just for you.
+                </div>
+                
+                <div class="benefit-item">
+                    <span class="benefit-title">📦 10-Minute Delivery</span>
+                    Get your orders delivered in record time.
+                </div>
+                
+                <div style="height: 1px; background-color: #333; margin: 30px 0;"></div>
+                
+                <center>
+                    <a href="https://chapchap.com.ng" class="cta-button">Visit Our Website</a>
+                </center>
+            </div>
             
-            <p class="message">
-                You've just secured your spot in something extraordinary. ChapChap is bringing lightning-fast commerce to Kano, and you'll be among the first to experience it.
-            </p>
-            
-            <!-- Highlight Box -->
-            <div class="highlight-box">
-                <h3>🌟 You're a VIP Now</h3>
-                <p>
-                    As a waitlist member, you're our top priority. When we launch, you'll get exclusive early access, special perks, and the best service we can offer.
+            <!-- Footer -->
+            <div class="footer">
+                <p class="footer-text">
+                    <strong>ChapChap</strong><br>
+                    Built for Kano, Nigeria 🇳🇬
+                </p>
+                <p class="footer-text" style="opacity: 0.5;">
+                    © 2026 ChapChap Quick E-Commerce Platform
                 </p>
             </div>
-            
-            <!-- Benefits -->
-            <div class="benefits">
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div class="benefit-text">
-                        <strong>Early Access:</strong> Be the first to experience ChapChap when we launch
-                    </div>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎁</div>
-                    <div class="benefit-text">
-                        <strong>Exclusive Perks:</strong> Special discounts and offers reserved just for you
-                    </div>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">🚀</div>
-                    <div class="benefit-text">
-                        <strong>Priority Support:</strong> VIP customer service whenever you need it
-                    </div>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">📦</div>
-                    <div class="benefit-text">
-                        <strong>10-Minute Delivery:</strong> Get your orders delivered in record time
-                    </div>
-                </div>
-            </div>
-            
-            <div class="divider"></div>
-            
-            <p class="message">
-                We'll keep you updated on our progress and notify you the moment we launch. Get ready for a shopping experience like no other!
-            </p>
-            
-            <center>
-                <a href="https://chapchap.com.ng" class="cta-button">Visit Our Website</a>
-            </center>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p class="footer-text">
-                <strong>ChapChap</strong> - Quick E-Commerce Platform<br>
-                Built for Kano, Nigeria 🇳🇬
-            </p>
-            
-            <div class="social-links">
-                <a href="#" class="social-link">f</a>
-                <a href="#" class="social-link">𝕏</a>
-                <a href="#" class="social-link">in</a>
-            </div>
-            
-            <p class="footer-text" style="font-size: 11px; margin-top: 20px;">
-                © 2026 ChapChap Quick E-Commerce Platform<br>
-                A subsidiary of AAUkasha Tech Nigeria
-            </p>
-            
-            <p class="footer-text" style="font-size: 11px; margin-top: 15px; opacity: 0.6;">
-                You're receiving this email because you joined our waitlist.<br>
-                We respect your privacy and will never share your information.
-            </p>
         </div>
     </div>
 </body>
