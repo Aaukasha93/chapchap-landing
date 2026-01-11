@@ -4,10 +4,30 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'ChapChap - Something Huge is Coming to Kano',
-  description: 'A new way to buy, sell, deliver, and earn — all in minutes. Launching soon in Kano State.',
+  description: 'Experience lightning-fast delivery in Kano. Join the waitlist for ChapChap - The new way to buy, sell, and earn in minutes.',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  openGraph: {
+    title: 'ChapChap - Something Huge is Coming to Kano',
+    description: 'Lightning-fast delivery, right to your doorstep. Join the waitlist now!',
+    url: 'https://chapchap.com.ng',
+    siteName: 'ChapChap',
+    locale: 'en_NG',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ChapChap - Kano\'s Quick Commerce Revolution',
+    description: 'Join the waitlist for instant delivery in Kano.',
+  },
   icons: {
     icon: '/assets/logo.png',
+    apple: '/assets/logo.png',
   },
+  themeColor: '#030014',
 };
 
 export default function RootLayout({

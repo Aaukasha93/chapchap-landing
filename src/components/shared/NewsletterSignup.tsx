@@ -148,6 +148,7 @@ function NewsletterSignup() {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     disabled={status === 'loading' || status === 'success'}
+                    autoComplete="name"
                     sx={{
                         bgcolor: 'rgba(255,255,255,0.9)',
                         borderRadius: 1,
@@ -165,6 +166,9 @@ function NewsletterSignup() {
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     disabled={status === 'loading' || status === 'success'}
+                    type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
                     sx={{
                         bgcolor: 'rgba(255,255,255,0.9)',
                         borderRadius: 1,
@@ -182,6 +186,9 @@ function NewsletterSignup() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={status === 'loading' || status === 'success'}
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
                     sx={{
                         bgcolor: 'rgba(255,255,255,0.9)',
                         borderRadius: 1,
