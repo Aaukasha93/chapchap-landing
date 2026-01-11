@@ -1,0 +1,47 @@
+/* Global tailwind-like utilities for custom effects */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #030014;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Star field background effect can be added via a component, but let's keep basic css clean */
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #7042f8, #00ffa3);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.neon-glow {
+  box-shadow: 0 0 10px rgba(112, 66, 248, 0.5), 0 0 20px rgba(112, 66, 248, 0.3);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #030014;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7042f8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00ffa3;
+}
